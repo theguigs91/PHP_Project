@@ -11,13 +11,10 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('article/{n}', 'ArticleController@show')->where('n', '[0-9]+');
+Auth::routes();
 
-Route::get('users', 'UsersController@create');
-Route::post('users', 'UsersController@store');
-Route::post('login', 'UsersController@login');
-
-Route::get('contact', 'ContactController@create');
-Route::post('contact', 'ContactController@store');
+Route::get('/home', 'HomeController@index')->name('home');
