@@ -6,17 +6,16 @@
  * Made By MaterializeCSS.com
  */
 
-.title_juice {
-    font-size: 4rem !important;
-    font-family: "orange juice";
-}
-
 .icon-block {
   padding: 0 15px;
 }
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+/**********************************/
+/************* NAVBAR *************/
+/**********************************/
 
 #index-banner {
     background: radial-gradient(circle at center,#f5b200 0,#fc636b 30%,#ff6d92 70%);
@@ -27,11 +26,6 @@
     background-position: -100vw -120vh;
 }
 
-.nav-wrapper > ul > li > a {
-    font-size: 2rem;
-    font-family: "orange juice";
-}
-
 .modal {
     width: 30%;
 }
@@ -40,4 +34,72 @@
     border-radius: 5px;
     border: 2px solid #4a148c;
     box-shadow: none;
+}
+
+#loginBtn:hover {
+    background-color: #4a148c !important;
+    color: white !important;;
+}
+
+#signinBtn {
+    border-radius: 5px;
+    border: 2px solid #4a148c;
+    box-shadow: none;
+}
+
+#signinBtn:hover {
+    background-color: white !important;
+    color: #4a148c !important;;
+
+}
+
+.has-error input {
+    margin-bottom: 5px !important;
+}
+
+/*.help-block {
+    margin-bottom: 15px;
+}*/
+
+/*********************************/
+/************* VIDÉO *************/
+/*********************************/
+
+.video-vimeo-with-bg {
+    min-height: 0!important;
+    background-color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.background-cover {
+    background-size: cover!important;
+}
+
+.video-vimeo-with-bg .html-vid {
+    opacity: 1;
+    margin-top: 0!important;
+}
+
+.video-vimeo-with-bg .fluid-width-video-wrapper, .video-vimeo-with-bg .html-vid, .video-vimeo-with-bg .video-poster, .video-vimeo-with-bg .vimeo-vid {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+/***********************************************/
+/************* SECTION GREAT TEAMS *************/
+/***********************************************/
+
+.section--customers-heart {
+    background: #fff;
+    text-align: center;
+    padding-bottom: 120px;
+    background: url(https://luna1.co/42f973.png) no-repeat center 80px;
+    background-size: 86px 79px;
+    padding-top: 180px;
 }
