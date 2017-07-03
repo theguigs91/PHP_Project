@@ -23,9 +23,8 @@
             <!-- Dropdown Structure -->
             <ul id="dropdown" class="dropdown-content">
                 <li>
-                    {{--<a href="#" class="purple-text text-darken-4">Se déconnecter</a>--}}
                     <a href="{{ route('logout') }}" class="purple-text text-darken-4" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Logout
+                        Se déconnecter
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -60,101 +59,57 @@
                 <div>
                     <h2 class="center-align">Inscription</h2>
                 </div>
-                {{--{!! Form::open(['url' => 'register']) !!}
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">account_circle</i>
-                        {!! Form::text('name', null, ['class' => 'form-control']) !!}
-                        <label for="login">Name</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">account_circle</i>
-                        {!! Form::text('email', null, ['class' => 'form-control']) !!}
-                        <label for="login">Email</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">https</i>
-                        {!! Form::password('password', null, ['class' => 'form-control']) !!}
-                        <label for="password">Password</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">https</i>
-                        {!! Form::password('password_confirmation', null, ['class' => 'form-control']) !!}
-                        <label for="password">Password confirmation</label>
-                    </div>
-                    <button id="addButton" class="btn waves-effect waves-light right purple darken-4" type="submit" name="Add">S'inscrire
-                        <i class="material-icons right">send</i>
-                    </button>
-                </div>
-                {!! Form::close() !!}--}}
+
 
                 {!! Form::open(['url' => 'register']) !!}
-                <div class="input-field {{ $errors->has('name') ? ' has-error' : '' }}">
-                    {{--<label for="name" class="col-md-4 control-label">Name</label>
-
-                    <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                <div class="row">
+                    <div class="input-field {{ $errors->has('name') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix">account_circle</i>
+                        {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) !!}
+                        <label for="name">Name</label>
 
                         @if ($errors->has('name'))
-                            <span class="help-block">
+                            <span class="help-block right red-text">
                                 <strong>{{ $errors->first('name') }}</strong>
                             </span>
                         @endif
-                    </div>--}}
+                    </div>
 
-                    <i class="material-icons prefix">account_circle</i>
-                    {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) !!}
-                    <label for="name">Name</label>
-                </div>
-
-                <div class="input-field {{ $errors->has('email') ? ' has-error' : '' }}">
-                    {{--<label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                    <div class="col-md-6">
-                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                    <div class="input-field {{ $errors->has('email') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix">account_circle</i>
+                        {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email']) !!}
+                        <label for="email">Email</label>
 
                         @if ($errors->has('email'))
-                            <span class="help-block">
+                            <span class="help-block right red-text">
                                 <strong>{{ $errors->first('email') }}</strong>
                             </span>
                         @endif
-                    </div>--}}
+                    </div>
 
-                    <i class="material-icons prefix">account_circle</i>
-                    {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email']) !!}
-                    <label for="email">Email</label>
-                </div>
-
-                <div class="input-field {{ $errors->has('password') ? ' has-error' : '' }}">
-                    {{--<label for="password" class="col-md-4 control-label">Password</label>
-
-                    <div class="col-md-6">
-                        <input id="password" type="password" class="form-control" name="password" required>
+                    <div class="input-field {{ $errors->has('password') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix">https</i>
+                        {!! Form::password('password', null, ['class' => 'form-control', 'id' => 'password']) !!}
+                        <label for="password">Password</label>
 
                         @if ($errors->has('password'))
-                            <span class="help-block">
+                            <span class="help-block right red-text">
                                 <strong>{{ $errors->first('password') }}</strong>
                             </span>
                         @endif
-                    </div>--}}
-
-                    <i class="material-icons prefix">https</i>
-                    {!! Form::password('password', null, ['class' => 'form-control', 'id' => 'password']) !!}
-                    <label for="password">Password</label>
-                </div>
-
-                <div class="input-field">
-                    <i class="material-icons prefix">https</i>
-                    {!! Form::password('password_confirmation', null, ['class' => 'form-control', 'id' => 'password_confirmation']) !!}
-                    <label for="password_confirmation">Confirmation Mot de Passe</label>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                        <button id="addButton" class="btn waves-effect waves-light right purple darken-4" type="submit" name="Add">S'inscrire
-                            <i class="material-icons right">send</i>
-                        </button>
                     </div>
+
+                    <div class="input-field">
+                        <i class="material-icons prefix">https</i>
+                        {!! Form::password('password_confirmation', null, ['class' => 'form-control', 'id' => 'password_confirmation']) !!}
+                        <label for="password_confirmation">Confirmation Mot de Passe</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button id="addButton" class="btn waves-effect waves-light right purple darken-4" type="submit">S'inscrire
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
                 {!! Form::close() !!}
             </div>

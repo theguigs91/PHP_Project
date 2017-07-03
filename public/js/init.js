@@ -1,12 +1,12 @@
 (function($){
     $(function(){
-
         $('.modal').modal();
-
-
-
     }); // end of document ready
 })(jQuery); // end of jQuery name space
+
+function hasClass(element, cls) {
+    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+}
 
 $(document).ready(function() {
     $('.dropdown-button').dropdown({
