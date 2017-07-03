@@ -38,11 +38,14 @@
                 @if (Route::has('login'))
                     <div class="top-right links">
                         @if (Auth::check())
+                            <li><a class="purple-text text-darken-4" href="#">Contact</a></li>
+                            <li><a class="purple-text text-darken-4" href="#">A propos</a></li>
                             <li><a class='purple-text text-darken-4 dropdown-button' href='#' data-activates='dropdown'>{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
                         @else
+                            <li><a class="purple-text text-darken-4" href="#">Contact</a></li>
                             <li><a class="purple-text text-darken-4" href="#">A propos</a></li>
                             <li><a id="loginBtn" class="purple-text text-darken-4 white btn" href="#LogInModal">Connexion</a></li>
-                            <li><a class="white-text purple darken-4 btn" href="#SignInModal">Inscription</a></li>
+                            <li><a id="signinBtn" class="white-text purple darken-4 btn" href="#SignInModal">Inscription</a></li>
                         @endif
                     </div>
                 @endif
