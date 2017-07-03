@@ -6,17 +6,16 @@
  * Made By MaterializeCSS.com
  */
 
-.title_juice {
-    font-size: 4rem !important;
-    font-family: "orange juice";
-}
-
 .icon-block {
   padding: 0 15px;
 }
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+/**********************************/
+/************* NAVBAR *************/
+/**********************************/
 
 #index-banner {
     background: radial-gradient(circle at center,#f5b200 0,#fc636b 30%,#ff6d92 70%);
@@ -25,11 +24,6 @@
     padding-bottom: 80px;
     background-size: 300vw 300vh;
     background-position: -100vw -120vh;
-}
-
-.nav-wrapper > ul > li > a {
-    font-size: 2rem;
-    font-family: "orange juice";
 }
 
 .modal {
@@ -59,6 +53,10 @@
 
 }
 
+/*********************************/
+/************* VIDÉO *************/
+/*********************************/
+
 .video-vimeo-with-bg {
     min-height: 0!important;
     background-color: transparent;
@@ -84,6 +82,10 @@
     height: 100%;
     margin: 0 auto;
 }
+
+/***********************************************/
+/************* SECTION GREAT TEAMS *************/
+/***********************************************/
 
 .section--customers-heart {
     background: #fff;
