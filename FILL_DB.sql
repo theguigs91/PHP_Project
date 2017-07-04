@@ -1,3 +1,5 @@
+USE 'asana_like';
+
 INSERT INTO users (name, email, password) VALUES('Presci', 'san_p@epita.fr', 'password');
 
 INSERT INTO project (name) VALUES('PHP Project');
