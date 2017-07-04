@@ -36,7 +36,7 @@ CREATE TABLE `task` (
   `description` varchar(100) NOT NULL,
   `project_id` bigint(20) NOT NULL NULL,
   `category_id` bigint(20) DEFAULT NULL,
-  `priority` int(11) DEFAULT NULL,
+  `priority` int(11) DEFAULT '1',
   `deadline` date DEFAULT NULL,
   `finished` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),

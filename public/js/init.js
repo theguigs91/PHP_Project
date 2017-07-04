@@ -19,4 +19,13 @@ $(document).ready(function() {
         alignment: 'right', // Displays dropdown with edge aligned to the left of button
         stopPropagation: false // Stops event propagation
     });
+
+    $('.datepicker').pickadate({
+        format: 'mm-dd-yyyy',
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+
+    $('select').material_select();
+    $(".caret").hide()
 });

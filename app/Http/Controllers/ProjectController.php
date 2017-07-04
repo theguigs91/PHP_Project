@@ -7,6 +7,17 @@ use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
+    public function showAllProjects() {
+        $allProjects = DB::table('project')->get();
+
+        $categories = [];
+        foreach ($allProjects as $project) {
+            $allCategories = DB::table('category')->where('project_id', $project->id)->get();
+            $categories[$project->id] = $allCategories;
+        }
+        return view('projects', ['categories' => $categories, 'projects' => $allProjects]);
+    }
+
     // GET
     public function addProjectForm() {
         return view('addProject');
@@ -17,6 +28,6 @@ class ProjectController extends Controller
         $name = $request->input('name');
 
         DB::table('project')->insert(['name' => $name]);
-        return redirect('tasks');
+        return redirect('projects');
     }
 }

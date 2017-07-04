@@ -17,8 +17,7 @@
 <body>
     <nav class="white" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="" class="brand-logo title_juice purple-text text-darken-4">
-                {{ HTML::image('images/logo_v2.png') }}
+            <a id="logo-container" href="http://localhost:8080/PHP_Project/public" class="siteHeader-logo brand-logo title_juice purple-text text-darken-4">
             </a>
             <!-- Dropdown Structure -->
             <ul id="dropdown" class="dropdown-content">
@@ -37,10 +36,11 @@
                 @if (Route::has('login'))
                     <div class="top-right links">
                         @if (Auth::check())
-                            <li><a class="purple-text text-darken-4" href="#">Contact</a></li>
+                            <li><a class="purple-text text-darken-4" href="#">Contacts</a></li>
                             <li><a class="purple-text text-darken-4" href="#">A propos</a></li>
                             <li><a class='purple-text text-darken-4 dropdown-button' href='#' data-activates='dropdown'>{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
                         @else
+                            <li><a class="purple-text text-darken-4" href={{route('projects')}}>Projects</a></li>
                             <li><a class="purple-text text-darken-4" href="#">Contact</a></li>
                             <li><a class="purple-text text-darken-4" href="#">A propos</a></li>
                             <li><a id="loginBtn" class="purple-text text-darken-4 white btn" href="#LogInModal">Connexion</a></li>

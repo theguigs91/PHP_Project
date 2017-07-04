@@ -13,13 +13,18 @@ class TaskController extends Controller
         $categories = DB::table('category')->where('project_id', $project_id)->get();
         $project_name = DB::table('project')->where('id', $project_id)->pluck('name')->first();
 
-        $contributors = DB::table('user')
-            ->join('user_project', 'user.id', '=', 'user_project.user_id')
-            ->select('user.id', 'user.name')
+        $contributors = DB::table('users')
+            ->join('user_project', 'users.id', '=', 'user_project.user_id')
+            ->select('users.id', 'users.name')
             ->where('user_project.project_id', $project_id)
             ->get();
 
-        return view('addTask', ['categories' => $categories, 'project' => $project_name, 'contributors' => $contributors]);
+        $list = [];
+        foreach ($categories as $category) {
+            $list[$category->id] = $category->name;
+        }
+
+        return view('addTask', ['list' => $list, 'categories' => $categories, 'project' => $project_name, 'contributors' => $contributors]);
     }
 
     public function addTaskSameProject($category_id)
@@ -30,13 +35,18 @@ class TaskController extends Controller
         $project_name = $project->name;
         $categories = DB::table('category')->where('project_id', $project->id)->get();
 
-        $contributors = DB::table('user')
-            ->join('user_project', 'user.id', '=', 'user_project.user_id')
-            ->select('user.id', 'user.name')
+        $contributors = DB::table('users')
+            ->join('user_project', 'users.id', '=', 'user_project.user_id')
+            ->select('users.id', 'users.name')
             ->where('user_project.project_id', $project->id)
             ->get();
 
-        return view('addTask', ['categories' => $categories, 'project' => $project_name, 'contributors' => $contributors]);
+        $list = [];
+        foreach ($categories as $category_iy) {
+            $list[$category_iy->id] = $category_iy->name;
+        }
+
+        return view('addTask', ['list' => $list, 'item_selected' => $category, 'categories' => $categories, 'project' => $project_name, 'contributors' => $contributors]);
     }
 
     //POST
@@ -61,11 +71,11 @@ class TaskController extends Controller
 
         $lastTask = DB::table('task')->orderBy('id', 'DESC')->first();
 
-       foreach ((array)$contributors as $contributor) {
+        foreach ((array)$contributors as $contributor) {
              DB::table('user_task')->insert(['user_id' => $contributor, 'task_id' => $lastTask->id]);
         }
 
-        return redirect('tasks');
+        return redirect('tasks/category/'.$category);
     }
 
     // GET
@@ -74,11 +84,6 @@ class TaskController extends Controller
         $allCategories = DB::table('category')->get();
         $allProjects = DB::table('project')->get();
         return view('tasks', ['tasks' => $allTasks, 'categories' => $allCategories, 'projects' => $allProjects]);
-    }
-
-    public function showAllProjects() {
-        $allProjects = DB::table('project')->get();
-        return view('tasks', ['tasks' => [], 'categories' => [], 'projects' => $allProjects]);
     }
 
     public function showCategoriesFromProject($n){
@@ -90,27 +95,18 @@ class TaskController extends Controller
     // GET
     // TODO: rajouter project_id à TASK pour les non classés
     public function showTaskFromCategory($n) {
-        $allProjects = DB::table('project')->get();
-        $category = DB::table('category')->where('id', $n)->first();
-
-        $currentProject_id = DB::table('project')->where('id', $category->project_id)->pluck('id');
-        $categories = DB::table('category')->where('project_id', $currentProject_id)->get();
-
-        $contributors_name = DB::table('user')
-            ->join('user_task', 'user.id', '=', 'user_task.user_id')
+        $contributors_name = DB::table('users')
+            ->join('user_task', 'users.id', '=', 'user_task.user_id')
             ->join('task', 'task.id', '=', 'user_task.task_id')
-            ->select('task.id', 'user.name')
+            ->select('task.id', 'users.name')
             ->get();
 
+        $category = DB::table('category')->where('id', $n)->get()->first();
 
-        if ($n == 0) {
-            $task_category = DB::table('task')->whereNull('category_id')->get();
-        }
-        else {
-            $task_category = DB::table('task')->where('category_id', $n)->get();
-        }
-        return view('tasks', ['tasks' => $task_category, 'categories' => $categories, 'projects' => $allProjects,
-                    'contributors' => $contributors_name]);
+
+        $task_category = DB::table('task')->where('category_id', $n)->get();
+
+        return view('tasks', ['tasks' => $task_category, 'category' => $category, 'contributors' => $contributors_name]);
     }
 
     // PUT
@@ -145,15 +141,31 @@ class TaskController extends Controller
         $project = DB::table('project')->where('id', $category->project_id)->first();
 
         $categories_project = DB::table('category')->where('project_id', $project->id)->get();
-        $contributors_project = DB::table('user')
-            ->join('user_project', 'user.id', '=', 'user_project.user_id')
-            ->select('user.id', 'user.name')
+        $contributors_project = DB::table('users')
+            ->join('user_project', 'users.id', '=', 'user_project.user_id')
+            ->select('users.id', 'users.name')
             ->where('user_project.project_id', $project->id)
             ->get();
 
-        return view('editTask', ['task' => $task,
-            'categories_project' => $categories_project,
-          'contributors_task' => $contributors_task, 'contributors_project' => $contributors_project]);
+        $listCategory = [];
+        foreach ($categories_project as $category_it) {
+            $listCategory[$category_it->id] = $category_it->name;
+        }
+
+        $listContributors = [];
+        foreach ($contributors_project as $contributors) {
+            $listContributors[$contributors->id] = $contributors->name;
+        }
+
+
+        return view('editTask',
+            ['task' => $task,
+                'listCategory' => $listCategory,
+                'listContributors' => $listContributors,
+                'item_selected' => $category->id,
+                'categories_project' => $categories_project,
+                'contributors_task' => $contributors_task,
+                'contributors_project' => $contributors_project]);
     }
 
     // POST
@@ -199,10 +211,10 @@ class TaskController extends Controller
     }
 
     // DELETE
-    public function deleteTask($task_id) {
-        DB::table('task')->where('id', $task_id)
-            ->delete();
-        return redirect('tasks');
+    public function deleteTask($task_id, $category_id) {
+        DB::table('task')->where('id', $task_id)->delete();
+
+        return redirect('tasks/category/'.$category_id);
     }
 
     public function assignTaskForm(){

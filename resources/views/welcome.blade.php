@@ -8,7 +8,7 @@
             <h1 class="header center white-text">Améliorer votre organisation</h1>
             <div class="row center">
                 <h5 class="header col s12 light white-text">Asana est le moyen le plus simple d'organiser une équipe et
-                d'obtenir des résultats rapidement</h5>
+                    d'obtenir des résultats rapidement</h5>
             </div>
             <div class="row center">
                 <a href="#SignInModal" id="download-button" class="btn-large waves-effect waves-light purple darken-4 pulse">J'y vais</a>
@@ -16,6 +16,8 @@
             <br><br>
         </div>
     </div>
+
+
 
 
     <div class="container">
