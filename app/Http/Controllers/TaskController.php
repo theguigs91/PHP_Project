@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     // GET
     public function addTaskForm($project_id){
         $categories = DB::table('category')->where('project_id', $project_id)->get();

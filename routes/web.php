@@ -40,6 +40,10 @@ Route::delete('/category/delete/{c}', 'CategoryController@deleteCategory')->name
 Route::get('projects', 'ProjectController@showAllProjects')->name('projects');
 Route::get('/projects/add', 'ProjectController@addProjectForm')->name('addProject');
 Route::post('/projects/add', 'ProjectController@addProject');
+Route::get('/projects/addUser/{p}', 'ProjectController@addUserForProjectForm')->name('addUserForProject');
+Route::post('/projects/addUser/{p}', 'ProjectController@addUserForProject');
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 

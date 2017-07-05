@@ -20,6 +20,7 @@
                 @foreach($projects as $project)
                     <li>
                         <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{$project->name}}
+                            <a href="{{ route('addUserForProject', $project->id) }}" class="deleteBtn purple-text text-darken-4 right"><i class="material-icons">group-add</i></a>
                         </div>
                         <div class="collapsible-body">
                             @if (count($categories[$project->id]) == 0)

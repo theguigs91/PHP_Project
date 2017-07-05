@@ -21,6 +21,8 @@
             </a>
             <!-- Dropdown Structure -->
             <ul id="dropdown" class="dropdown-content">
+                <li><a href="{{ route('projects') }}" class="purple-text text-darken-4">Mes projets</a></li>
+                <li class="divider"></li>
                 <li>
                     <a href="{{ route('logout') }}" class="purple-text text-darken-4" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Se déconnecter

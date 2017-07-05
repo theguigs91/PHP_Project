@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     // GET
     public function addCategoryForm($project_id){
         $project = DB::table('project')->where('id', $project_id)->first();
@@ -27,13 +32,13 @@ class CategoryController extends Controller
         $project = $request->input('project');
 
         DB::table('category')->insert(['name' => $name, 'project_id' => $project]);
-        return redirect('tasks');
+        return redirect('projects');
     }
 
     // DELETE
     public function deleteCategory($category_id) {
         DB::table('category')->where('id', $category_id)
             ->delete();
-        return redirect('tasks');
+        return redirect('projects');
     }
 }
